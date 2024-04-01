@@ -10,7 +10,10 @@
     <div style="position: relative; display: inline-block;">
            <div style="position: absolute; display: flex; width: 100%; align-items: center; padding: 20px;">
             <!-- 1p의 체력 -->
-            <div style="background-color: yellow; height: 30px; width: 100%;"></div>
+            <div style="position: relative; width: 100%; display: flex; justify-content: flex-end;">
+                <div style="background-color: yellow;height: 30px; width: 100%;"></div>
+                <div id = "playerHealth" style="position: absolute; background-color: red; height: 30px; top: 0; right: 0; bottom: 0; width: 100%;"></div>
+            </div>
             <!-- 시간 -->
             <div style="background-color: red; height: 100px; width: 100px; flex-shrink: 0;"></div>
             <!-- 2p의 체력 -->

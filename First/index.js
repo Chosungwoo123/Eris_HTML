@@ -220,6 +220,8 @@ function animate() {
     {
         console.log("enemy hit");
         enemy.isAttacking = false;
+        player.health -= 20;
+        document.querySelector("#playerHealth").style.width = player.health + "%";
     }
 }
 
