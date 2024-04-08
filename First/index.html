@@ -15,15 +15,32 @@
                 <div id = "playerHealth" style="position: absolute; background-color: red; height: 30px; top: 0; right: 0; bottom: 0; width: 100%;"></div>
             </div>
             <!-- 시간 -->
-            <div style="background-color: red; height: 100px; width: 100px; flex-shrink: 0;"></div>
+            <div id="timer" style="background-color: red; height: 100px; width: 100px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
+                10
+            </div>
             <!-- 2p의 체력 -->
             <div style="position: relative; width: 100%;">
                 <div style="background-color: yellow;height: 30px;"></div>
                 <div id = "enemyHealth" style="position: absolute; background-color: blue; height: 30px; top: 0; right: 0; bottom: 0; left: 0;"></div>
             </div>
         </div>
+        <div id="displayText" style="
+            position: absolute; 
+            color: white; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: none;">
+            무승부
+        </div>
         <canvas></canvas>
     </div>
 
-    <script src="index.js"></script>
+    <script src="/First/js/classes.js"></script>
+    <script src="/First/js/Utils.js"></script>
+    <script src="/First/index.js"></script>
 </body>
