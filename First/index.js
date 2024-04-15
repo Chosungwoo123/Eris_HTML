@@ -37,11 +37,28 @@ const player = new Fighter({
         x :0,
         y :10,
    },
-   color : "red",
    offset:{
         x : 0,
         y : 0,
    },
+   imageSrc: "/First/img/1p/Idle.png",
+   framesMax : 8,
+   scale : 2.5,
+
+   offset : {
+    x : 215,
+    y : 157,
+   },
+   sprites : {
+    idle : {
+        imageSrc : "/First/img/1p/Idle.png",
+        framesMax : 8,
+    },
+    run : {
+        imageSrc : "/First/img/1p/Run.png",
+        framesMax : 8,
+    }
+   }
 });
 
 const enemy = new Fighter({
@@ -61,6 +78,13 @@ const enemy = new Fighter({
         x : -50,
         y : 0,
     },
+    imageSrc: "/First/img/1p/Idle.png",
+   framesMax : 8,
+   scale : 2.5,
+   offset : {
+    x : 215,
+    y : 157,
+   },
 });
 
 console.log(player);
@@ -119,12 +143,15 @@ function animate() {
     //     player.velocity.x = 1;
     // }
 
+    player.image = player.sprites.idle.image;
     if(keys.a.pressed && player.lastKey === 'a')
     {
+        player.image = player.sprites.run.image;
         player.velocity.x = -2;
     }
     else if(keys.d.pressed && player.lastKey  === 'd')
     {
+        player.image = player.sprites.run.image;
         player.velocity.x = 2;
     }
 
