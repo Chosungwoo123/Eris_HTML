@@ -65,6 +65,10 @@ const player = new Fighter({
     fall : {
         imageSrc : "/First/img/1p/Fall.png",
         framesMax : 2,
+    },
+    attack1 : {
+        imageSrc : "/First/img/1p/Attack1.png",
+        framesMax : 6,
     }
    }
 });
@@ -86,13 +90,36 @@ const enemy = new Fighter({
         x : -50,
         y : 0,
     },
-    imageSrc: "/First/img/1p/Idle.png",
-   framesMax : 8,
+    imageSrc: "/First/img/2p/Idle.png",
+   framesMax : 4,
    scale : 2.5,
+
    offset : {
     x : 215,
-    y : 157,
+    y : 167,
    },
+   sprites : {
+    idle : {
+        imageSrc : "/First/img/2p/Idle.png",
+        framesMax : 4,
+    },
+    run : {
+        imageSrc : "/First/img/2p/Run.png",
+        framesMax : 8,
+    },
+    jump : {
+        imageSrc : "/First/img/2p/Jump.png",
+        framesMax : 2,
+    },
+    fall : {
+        imageSrc : "/First/img/2p/Fall.png",
+        framesMax : 2,
+    },
+    attack1 : {
+        imageSrc : "/First/img/2p/Attack1.png",
+        framesMax : 4,
+    }
+   }
 });
 
 console.log(player);
@@ -183,11 +210,25 @@ function animate() {
 
     if(keys.ArrowLeft.pressed && enemy.lastKey === "ArrowLeft")
     {
+        enemy.switchSprite('run');
         enemy.velocity.x = -2;
     }
     else if(keys.ArrowRight.pressed && enemy.lastKey === "ArrowRight")
     {
+        enemy.switchSprite('run');
         enemy.velocity.x = 2;
+    }
+    else{
+        enemy.switchSprite('idle');
+    }
+
+    if(enemy.velocity.y < 0)
+    {
+        enemy.switchSprite('jump');
+    }
+    else if(enemy.velocity.y > 0)
+    {
+        enemy.switchSprite('fall');
     }
 
     // 충돌체크
