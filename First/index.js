@@ -57,6 +57,14 @@ const player = new Fighter({
     run : {
         imageSrc : "/First/img/1p/Run.png",
         framesMax : 8,
+    },
+    jump : {
+        imageSrc : "/First/img/1p/Jump.png",
+        framesMax : 2,
+    },
+    fall : {
+        imageSrc : "/First/img/1p/Fall.png",
+        framesMax : 2,
     }
    }
 });
@@ -143,16 +151,34 @@ function animate() {
     //     player.velocity.x = 1;
     // }
 
-    player.image = player.sprites.idle.image;
+    //player.image = player.sprites.idle.image;
+
+    // player.switchSprite('idle');
+
     if(keys.a.pressed && player.lastKey === 'a')
     {
-        player.image = player.sprites.run.image;
+        // player.image = player.sprites.run.image;
+        player.switchSprite('run');
         player.velocity.x = -2;
     }
     else if(keys.d.pressed && player.lastKey  === 'd')
     {
-        player.image = player.sprites.run.image;
+        // player.image = player.sprites.run.image;
+        player.switchSprite('run');
         player.velocity.x = 2;
+    }
+    else
+    {
+        player.switchSprite('idle');
+    }
+
+    if(player.velocity.y < 0)
+    {
+        player.switchSprite('jump');
+    }
+    else if(player.velocity.y > 0)
+    {
+        player.switchSprite('fall');
     }
 
     if(keys.ArrowLeft.pressed && enemy.lastKey === "ArrowLeft")
