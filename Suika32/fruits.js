@@ -1,47 +1,47 @@
 const FRUITS= [
   {
-    name: "image/00_cherry",
+    name: "/Suika32/image/00_cherry",
     radius: 33 / 2,
   },
   // name: "/suika/img/00_cherry", 다른 곳에서 작업할 경우 경로 확인
   {
-    name: "image/01_strawberry",
+    name: "/Suika32/image/01_strawberry",
     radius: 48 / 2,
   },
   {
-    name: "image/02_grape",
+    name: "/Suika32/image/02_grape",
     radius: 61 / 2,
   },
   {
-    name: "image/03_gyool",
+    name: "/Suika32/image/03_gyool",
     radius: 69 / 2,
   },
   {
-    name: "image/04_orange",
+    name: "/Suika32/image/04_orange",
     radius: 89 / 2,
   },
   {
-    name: "image/05_apple",
+    name: "/Suika32/image/05_apple",
     radius: 114 / 2,
   },
   {
-    name: "image/06_pear",
+    name: "/Suika32/image/06_pear",
     radius: 129 / 2,
   },
   {
-    name: "image/07_peach",
+    name: "/Suika32/image/07_peach",
     radius: 156 / 2,
   },
   {
-    name: "image/08_pineapple",
+    name: "/Suika32/image/08_pineapple",
     radius: 177 / 2,
   },
   {
-    name: "image/09_melon",
+    name: "/Suika32/image/09_melon",
     radius: 220 / 2,
   },
   {
-    name: "image/10_watermelon",
+    name: "/Suika32/image/10_watermelon",
     radius: 259 / 2,
   },
 ];
