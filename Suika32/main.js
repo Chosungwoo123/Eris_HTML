@@ -1,10 +1,14 @@
 import { FRUITS } from "./fruits.js";
 
+
 var Engine = Matter.Engine,
     Render = Matter.Render,
     Runner = Matter.Runner,
     Bodies = Matter.Bodies,
-    World = Matter.World;
+    World = Matter.World,
+    // 과일 조작을 위해 선언 
+    Body = Matter.Body,
+    Events = Matter.Events;
 
 // 엔진 선언
 const engine = Engine.create();
@@ -56,6 +60,9 @@ Runner.run(engine);
 let currentBody = null;
 let currentFruit = null;
 
+// 키 조작을 제어하는 변수
+let diasbleAction = false;
+
 function addFruit() {
     const index = Math.floor(Math.random() * 5);
     console.log(index);
@@ -77,5 +84,70 @@ function addFruit() {
 
     World.add(world, body);
 }
+
+window.onkeydown = (event) => {
+    if(diasbleAction)
+    return;
+
+    switch(event.code)
+    {
+        case "KeyA":
+            if(currentBody.position.x  - currentFruit.radius > 30)
+            Body.setPosition(currentBody, {
+                x : currentBody.position.x - 10,
+                y : currentBody.position.y,
+            });
+            break;
+            
+        case "KeyD":
+            if(currentBody.position.x  + currentFruit.radius < 590)
+            Body.setPosition(currentBody, {
+                x : currentBody.position.x + 10,
+                y : currentBody.position.y,
+            });
+            break;
+
+        case "KeyS":
+            currentBody.isSleeping = false;
+            diasbleAction = true;
+            setTimeout(() => {
+                addFruit();
+                diasbleAction = false;
+            }, 1000)
+            break;
+    }
+}
+
+Events.on(engine, "collisionStart", (event) => {
+    event.pairs.forEach((collision) => {
+        // 같은 과일일 경우
+        if(collision.bodyA.index == collision.bodyB.index)
+        {
+            // 기존 과일값 저장
+            const index = collision.bodyA.index
+
+            // 수박끼리 부딪힐 경우 예외처리
+            if(index === FRUITS.length - 1)
+                return;
+            
+            // 과일 제거
+            World.remove(world, [collision.bodyA, collision.bodyB])
+
+            const newFruit = FRUITS[index + 1];
+            const newBody = Bodies.circle(
+                // 부딪힌 지점의 x, y값을 가져온다.
+                collision.collision.supports[0].x,
+                collision.collision.supports[0].y,
+                newFruit.radius,
+                {
+                    index : index + 1,
+                    render : {sprite : {texture : `${newFruit.name}.png`}},
+                }
+            );
+
+            World.add(world, newBody);
+        }        
+    });
+})
 
 addFruit();
